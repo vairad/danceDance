@@ -1,0 +1,8 @@
+
+*.user
+/GeneratedFiles/
+/release/
+/debug/
+/x64/
+/.vs/
+
