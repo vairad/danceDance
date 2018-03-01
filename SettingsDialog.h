@@ -2,7 +2,8 @@
 
 #include <QDialog>
 #include "ui_settings.h"
-#include "Settings.h"
+#include "settings.h"
+#include "playcolumn.h"
 
 class SettingsDialog : public QDialog, public Ui::SettingsDlg
 {
@@ -10,14 +11,23 @@ class SettingsDialog : public QDialog, public Ui::SettingsDlg
 public:
 	SettingsDialog(Settings *settings_ref, QWidget * parent = nullptr);
 	~SettingsDialog();
+	void closeEvent(QCloseEvent * event) override;
 
 public slots:
-	void exitProgram();
 	void startGame();
 	void resetProps();
+	void updateSettings();
+
 private:
 	Settings * settings;
 	Ui::SettingsDlg *ui;
+
+	QSlider * speedSlider;
+	QSlider * arrowCountSlider;
+	QSlider * nextArrowSlider;
+	QSlider * probabilitySlider;
+
+	PlayColumn * playgame = nullptr;
 };
 
  

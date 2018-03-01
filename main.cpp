@@ -1,18 +1,7 @@
-#include <QtGui>
+#include  <QtGui>
 
-#include "playcolumn.h"
-#include "Settings.h"
-#include "SettingsDialog.h"
-#include "mainwindow.h"
-
-void runGame(Settings * settings)
-{
-	while(settings->stillPlay())
-	{
-		PlayColumn clock(settings);
-		clock.show();
-	}
-}
+#include "settings.h"
+#include "settingsdialog.h"
 
 int main(int argc, char **argv)
 {
@@ -22,11 +11,7 @@ int main(int argc, char **argv)
 
 	SettingsDialog settings_dialog(&settings);
 	
-	while(!settings.endGame())
-	{
-		settings_dialog.exec();
-	}
+	settings_dialog.show();
 
-	//return app.exec();
-    return 0;
+	return app.exec();
 }

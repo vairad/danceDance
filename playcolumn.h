@@ -3,7 +3,7 @@
 
 #include <QtGui>
 
-#include "Settings.h"
+#include "settings.h"
 #include "rasterwindow.h"
 #include "position.h"
 

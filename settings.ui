@@ -1,88 +1,193 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SettingsDlg</class>
- <widget class="QDialog" name="SettingsDlg">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>400</width>
-    <height>300</height>
-   </rect>
-  </property>
-  <property name="windowTitle">
-   <string>Nastavení hry</string>
-  </property>
-  <widget class="QWidget" name="layoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>5</y>
-     <width>381</width>
-     <height>281</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout">
-    <property name="spacing">
-     <number>6</number>
+  <class>SettingsDlg</class>
+  <widget class="QDialog" name="SettingsDlg">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>400</width>
+        <height>300</height>
+      </rect>
     </property>
-    <property name="leftMargin">
-     <number>0</number>
+    <property name="windowTitle">
+      <string>Nastavení hry</string>
     </property>
-    <property name="topMargin">
-     <number>0</number>
-    </property>
-    <property name="rightMargin">
-     <number>0</number>
-    </property>
-    <property name="bottomMargin">
-     <number>0</number>
-    </property>
-    <item>
-     <widget class="QPushButton" name="startButton">
-      <property name="text">
-       <string>Start game</string>
+    <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+        <rect>
+          <x>10</x>
+          <y>5</y>
+          <width>381</width>
+          <height>281</height>
+        </rect>
       </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="resetButton">
-      <property name="text">
-       <string>Reset properties</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QSlider" name="horizontalSlider_3">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QSlider" name="horizontalSlider_2">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QSlider" name="horizontalSlider">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-    </item>
-     <item>
-       <widget class="QPushButton" name="exitButton">
-         <property name="text">
-           <string>Exit Game</string>
-         </property>
-       </widget>
-     </item>
-   </layout>
+      <layout class="QVBoxLayout">
+        <property name="spacing">
+          <number>6</number>
+        </property>
+        <property name="leftMargin">
+          <number>0</number>
+        </property>
+        <property name="topMargin">
+          <number>0</number>
+        </property>
+        <property name="rightMargin">
+          <number>0</number>
+        </property>
+        <property name="bottomMargin">
+          <number>0</number>
+        </property>
+        <item>
+          <widget class="QPushButton" name="startButton">
+            <property name="text">
+              <string>Start game</string>
+            </property>
+          </widget>
+        </item>
+        <item>
+          <widget class="QPushButton" name="resetButton">
+            <property name="text">
+              <string>Reset properties</string>
+            </property>
+          </widget>
+        </item>
+
+
+        <item>
+          <layout class="QHBoxLayout">
+            <item>
+              <widget class="QLabel" name="speedSliderText">
+                <property name="text">
+                  <string>Start speed:</string>
+                </property>
+              </widget>
+            </item>
+            <item>
+              <widget class="QLabel" name="speedSliderVal">
+                <property name="text">
+                  <string>XXX</string>
+                </property>
+              </widget>
+            </item>
+          </layout>
+        </item>
+        <item>
+          <widget class="QSlider" name="speedSlider">
+            <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="maximum">
+              <number>100</number>
+            </property>
+            <property name="value">
+              <number>10</number>
+            </property>
+          </widget>
+        </item>
+
+
+        <item>
+          <layout class="QHBoxLayout">
+            <item>
+              <widget class="QLabel" name="probOfTwoLabel">
+                <property name="text">
+                  <string>Probabilty of two:</string>
+                </property>
+              </widget>
+            </item>
+            <item>
+              <widget class="QLabel" name="probOfTwoVal">
+                <property name="text">
+                  <string>XXX</string>
+                </property>
+              </widget>
+            </item>
+          </layout>
+        </item>
+        <item>
+          <widget class="QSlider" name="probOfTwoSlider">
+            <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="maximum">
+              <number>100</number>
+            </property>
+            <property name="value">
+              <number>20</number>
+            </property>
+          </widget>
+        </item>
+
+        <item>
+          <layout class="QHBoxLayout">
+            <item>
+              <widget class="QLabel" name="arrowCountLabel">
+                <property name="text">
+                  <string>MaxArrowCount</string>
+                </property>
+              </widget>
+            </item>
+            <item>
+              <widget class="QLabel" name="arrowCountVal">
+                <property name="text">
+                  <string>XXX</string>
+                </property>
+              </widget>
+            </item>
+          </layout>
+        </item>
+
+        <item>
+          <widget class="QSlider" name="arrowCountSlider">
+            <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="maximum">
+              <number>20</number>
+            </property>
+            <property name="value">
+              <number>5</number>
+            </property>
+          </widget>
+        </item>
+
+        <item>
+          <layout class="QHBoxLayout">
+            <item>
+              <widget class="QLabel" name="nextArrowLabel">
+                <property name="text">
+                  <string>Minimal succes space</string>
+                </property>
+              </widget>
+            </item>
+            <item>
+              <widget class="QLabel" name="nextArrowVal">
+                <property name="text">
+                  <string>XXX</string>
+                </property>
+              </widget>
+            </item>
+          </layout>
+        </item>
+
+        <item>
+          <widget class="QSlider" name="nextArrowSlider">
+            <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="maximum">
+              <number>100</number>
+            </property>
+            <property name="value">
+              <number>30</number>
+            </property>
+          </widget>
+        </item>
+
+       </layout>
+    </widget>
   </widget>
- </widget>
- <resources/>
- <connections/>
+  <resources/>
+  <connections/>
 </ui>
