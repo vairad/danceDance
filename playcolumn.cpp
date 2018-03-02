@@ -18,21 +18,46 @@ PlayColumn::PlayColumn(Settings * set)
     setTitle("DanceDance Simulator");
     resize(400, 400);
 
-	pos = new Position(TOP);
+	arrows.push_back(new Position(TOP));
 
 	initialisePolygons();
 
     m_timerId = startTimer(1);
+	counter = 0;
 }
 
 void PlayColumn::timerEvent(QTimerEvent *event)
 {
     if (event->timerId() == m_timerId)
     {
-		pos->move();
-		renderLater();
+		int modulus = 100 * (1 - settings->get_speed());
+		modulus++;
+		counter++;
+		counter = counter % modulus;
+		if(counter != 0)
+		{
+			return;
+		}
+
+		Position::resetMinimum();
+		for (Position * pos : arrows)
+		{
+			pos->move();
+		}
+		renderNow();
     }
-       
+
+	bool space = Position::getMinimum() > settings->getNextArrow();
+	bool capacity = arrows.size() < settings->getArrowsCount();
+
+	if(capacity && space)
+	{
+		arrows.push_back(new Position(getRandomColumn()));
+		if( (rand()%100)/100.0 < settings->getProb())
+		{
+			arrows.push_back(new Position(getRandomColumn()));
+		}
+	}
 }
 
 
@@ -76,38 +101,35 @@ void PlayColumn::render(QPainter *p)
 	setCenters();
 	renderHeader(p);
 
-
-    p->translate(width() / 2, height() / 2);
-
-    int side = qMin(width(), height());
-	double scale = side / 500.0;
-
+	p->translate(width() / 2, height() / 2);
     p->setPen(Qt::NoPen);
 
-
     p->save();
-	p->resetTransform();
-	const int col = pos->getColumn();
-	const double inv_prog = 1 - pos->getProgress();
-	p->setBrush(waitingColoure);
-	if(pos->getProgress() >= 0.75)
+	auto tmp_arrows = arrows;
+	for (Position * pos : tmp_arrows)
 	{
-		p->setBrush(nowColoure);
-	}
-	if (pos->getProgress() >= 0.9)
-	{
-		p->setBrush(doneColoure);
-	}
+		p->resetTransform();
+		const int col = pos->getColumn();
+		const double inv_prog = 1 - pos->getProgress();
+		p->setBrush(waitingColoure);
+		if (pos->getProgress() >= 0.75)
+		{
+			p->setBrush(nowColoure);
+		}
+		if (pos->getProgress() >= 0.9)
+		{
+			p->setBrush(doneColoure);
+		}
 
-	if (col == INVALID)
-	{
-		const Column index = getRandomColumn();
-		pos = new Position(index);
-		return;
-	}
-
-	p->translate(m_columnCenter[col], height() * inv_prog);
-	p->drawConvexPolygon(Arrow[col]);
+		if (col == INVALID)
+		{
+			const Column index = getRandomColumn();
+			arrows.remove(pos);
+			continue;
+		}
+		p->translate(m_columnCenter[col], height() * inv_prog);
+		p->drawConvexPolygon(Arrow[col]);
+	}	
     p->restore();
 }
 

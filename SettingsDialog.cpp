@@ -48,7 +48,11 @@ void SettingsDialog::startGame()
 
 void SettingsDialog::resetProps()
 {
-	QMessageBox::warning(this, "DanceDance Simulator", "Nefunguje Blbý co?", QMessageBox::Yes);
+	speedSlider->setValue(60);
+	arrowCountSlider->setValue(5);
+	nextArrowSlider->setValue(30);
+	probabilitySlider->setValue(20);
+	updateSettings();
 }
 
 

@@ -45,6 +45,26 @@ void Settings::setDoubleProb(double probability)
 	multi_prob = probability;
 }
 
+size_t Settings::getArrowsCount()
+{
+	return arrow_count;
+}
+
+double Settings::getNextArrow()
+{
+	return next_percentage;
+}
+
+double Settings::getProb()
+{
+	return multi_prob;
+}
+
+double Settings::get_speed()
+{
+	return speed_scale;
+}
+
 void Settings::setEndGame(bool b)
 {
 	is_end = b;

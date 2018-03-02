@@ -21,6 +21,9 @@ public:
 	const QColor doneColoure = QColor(127, 127, 127);
 	const QColor lineColoure = QColor(60, 60, 60);
 	const QColor targetColoure = QColor(255, 60, 60);
+
+	std::mutex arrows_lock;
+	
 protected:
     void timerEvent(QTimerEvent *) override;
 	void renderHeader(QPainter* p);
@@ -28,8 +31,9 @@ protected:
 	void render(QPainter *p) override;
 private:
     int m_timerId;
+	size_t counter;
 
-	Position *pos;
+	std::list<Position *> arrows;
 
 	Settings * settings;
 
@@ -37,6 +41,7 @@ private:
 
 	int m_columnWidth;;
 	int m_columnCenter[4];
+
 };
 
 #endif // PLAYCOLUMN_H

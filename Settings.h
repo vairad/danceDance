@@ -1,4 +1,6 @@
 #pragma once
+#include <list>
+
 class Settings
 {
 public:
@@ -12,6 +14,10 @@ public:
 	void setArrowCount(int arrowCount);
 	void setNextArrow(double arrow_percentage);
 	void setDoubleProb(double probability);
+	size_t getArrowsCount();
+	double getNextArrow();
+	double getProb();
+	double get_speed();
 
 private:
 	double speed_scale;
